@@ -39,7 +39,7 @@ def generate_instances(num_instances, folder_path, instance_type):
     #     pool.starmap(generate_hard_3_col_instances, arguments,chunksize=4)
     
     step=os.cpu_count()
-    step=4
+    # step=4
     for i in range(0,num_instances,step):
     # print(f'Starting generating {instance_type} instances')
         with Pool(step) as pool:
@@ -58,13 +58,12 @@ if __name__ == '__main__':
     os.makedirs(train_folder, exist_ok=True)
     os.makedirs(test_folder, exist_ok=True)
     os.makedirs(val_folder, exist_ok=True)
-    # for n in [50,100,150,200,300,400]:
-    for n in [400]:
+    for n in [50,100,150,200,300,400]:
         distribution=f'3col_{n}vertices'
         
-        num_train=10
-        num_test=10
-        num_val=10
+        num_train=4000
+        num_test=100
+        num_val=50
 
         os.makedirs(os.path.join(train_folder,distribution), exist_ok=True)
         generate_instances(num_train, os.path.join(train_folder,distribution), "training")
